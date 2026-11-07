@@ -1,0 +1,173 @@
+:root {
+  --bg: #0e0d0c;
+  --panel: rgba(28, 26, 24, 0.86);
+  --line: rgba(255, 255, 255, 0.12);
+  --text: #eee8e1;
+  --muted: #a69d93;
+  --accent: #e8b04b;
+  color-scheme: dark;
+  font: 15px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+#stage.drag {
+  outline: 2px dashed var(--accent);
+  outline-offset: -16px;
+}
+
+#portrait {
+  max-width: 100vw;
+  max-height: 100vh;
+  width: auto;
+  height: auto;
+}
+
+#empty {
+  max-width: 30rem;
+  padding: 16px;
+  text-align: center;
+}
+
+#empty h1 {
+  margin: 0 0 0.25rem;
+  font-size: 2.5rem;
+  letter-spacing: -0.02em;
+}
+
+#empty p {
+  color: var(--muted);
+}
+
+.row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font: inherit;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.45rem 0.95rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  border-color: var(--muted);
+}
+
+.btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #1b1408;
+  font-weight: 600;
+}
+
+#status {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  max-width: calc(100vw - 32px);
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--text);
+  text-align: center;
+}
+
+#status:empty {
+  display: none;
+}
+
+#bar {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.4rem;
+  border-radius: 999px;
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.4s;
+}
+
+body.idle #bar,
+body.idle #status {
+  opacity: 0;
+}
+
+body.idle {
+  cursor: none;
+}
+
+#settings {
+  position: fixed;
+  bottom: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(22rem, calc(100vw - 32px));
+  display: grid;
+  gap: 0.7rem;
+  padding: 1rem;
+  border-radius: 14px;
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+}
+
+#settings label {
+  display: grid;
+  gap: 0.2rem;
+  color: var(--muted);
+}
+
+#settings label.check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#settings input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+#cam.debug {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  width: 200px;
+  transform: scaleX(-1);
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+
+[hidden] {
+  display: none !important;
+}

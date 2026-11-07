@@ -1,0 +1,26 @@
+{
+  "name": "eyes",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "copy-wasm": "node scripts/copy-wasm.mjs",
+    "predev": "npm run copy-wasm",
+    "dev": "vite",
+    "prebuild": "npm run copy-wasm",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "smoke": "npm run copy-wasm && node tests/smoke.mjs"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^1.2.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.0",
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5"
+  },
+  "license": "MIT",
+  "description": "Upload a photo; its eyes follow whoever is in front of the webcam. Runs entirely in the browser."
+}
